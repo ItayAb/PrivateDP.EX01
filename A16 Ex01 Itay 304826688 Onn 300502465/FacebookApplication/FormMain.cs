@@ -6,18 +6,18 @@ using System.Drawing;
 using System.Linq;
 using System.Text;
 using System.Windows.Forms;
-using FacebookWrapper.ObjectModel;
-using FacebookWrapper;
 using System.Xml;
 using System.IO;
 using System.Xml.Serialization;
+using FacebookWrapper.ObjectModel;
+using FacebookWrapper;
 
 namespace FacebookApplication
 {
     public partial class FormMain : Form
     {
-        private string m_PathOfAppDataFile = string.Format("{0}\\{1}", AppDomain.CurrentDomain.BaseDirectory, "Facebook App Config.txt");
         private const string k_AppId = "843647649088563";
+        private string m_PathOfAppDataFile = string.Format("{0}\\{1}", AppDomain.CurrentDomain.BaseDirectory, "Facebook App Config.txt");
         private User m_LoggedInUser;
         private LikeAnalyzerForm m_likeAnalyzerForm;
 
@@ -62,7 +62,9 @@ namespace FacebookApplication
             }
             else
             {
-                LoginResult result = FacebookService.Login(k_AppId, /// (desig patter's "Design Patterns Course App 2.4" app)
+                LoginResult result = FacebookService.Login(
+                    k_AppId,                    
+                    /// (desig patter's "Design Patterns Course App 2.4" app)
                     "public_profile",
                     "user_education_history",
                     "user_birthday",
@@ -76,7 +78,8 @@ namespace FacebookApplication
                     "publish_actions",
                     "user_events",
                     "user_games_activity",
-                    "user_groups", // (This permission is only available for apps using Graph API version v2.3 or older.)
+                    "user_groups",                    
+                    // (This permission is only available for apps using Graph API version v2.3 or older.)
                     "user_hometown",
                     "user_likes",
                     "user_location",
@@ -86,14 +89,12 @@ namespace FacebookApplication
                     "user_relationships",
                     "user_relationship_details",
                     "user_religion_politics",
-
-                    //"user_status" (This permission is only available for apps using Graph API version v2.3 or older.)
+                    // "user_status" (This permission is only available for apps using Graph API version v2.3 or older.)
                     "user_tagged_places",
                     "user_videos",
                     "user_website",
                     "user_work_history",
                     "read_custom_friendlists",
-
                     // "read_mailbox", (This permission is only available for apps using Graph API version v2.3 or older.)
                     "read_page_mailboxes",
                     // "read_stream", (This permission is only available for apps using Graph API version v2.3 or older.)
@@ -101,9 +102,7 @@ namespace FacebookApplication
                     "manage_pages",
                     "publish_pages",
                     "publish_actions",
-
-                    "rsvp_event"
-                    );
+                    "rsvp_event");
 
                 if (!string.IsNullOrEmpty(result.AccessToken))
                 {
@@ -163,7 +162,6 @@ namespace FacebookApplication
 
         protected override void OnClosing(CancelEventArgs e)
         {
-            //  m_RememberMe = checkBox_RememberMe.Checked ? true : false;
             SaveLoadUtil.SaveAppData(m_PathOfAppDataFile, m_AppConfig);
             base.OnClosing(e);
         }

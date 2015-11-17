@@ -2,17 +2,17 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.IO;
 using FacebookWrapper.ObjectModel;
 using FacebookWrapper;
-using System.IO;
 
 namespace FacebookApplication
 {
-    class LikeAnalyzer
+    public class LikeAnalyzer
     {
-        Dictionary<User, int> m_LikeDataAnalysis;
-        User m_LoggedUser;
-        AnalysisProgressBar m_progressBarForm;
+        private Dictionary<User, int> m_LikeDataAnalysis;
+        private User m_LoggedUser;
+        private AnalysisProgressBar m_progressBarForm;
 
         public LikeAnalyzer(User i_LoggedUser)
         {
@@ -20,9 +20,11 @@ namespace FacebookApplication
             m_LoggedUser = i_LoggedUser;
         }
 
+        // TODO : Find a more elegant way to compare users
         public void CalculateLikeToList(int i_NumOfPosts)
         {
             initProgressBar(i_NumOfPosts);
+
             //Reset the Dictionary
             m_LikeDataAnalysis.Clear();
 
@@ -36,10 +38,7 @@ namespace FacebookApplication
                     // if the user already appeared in previous calculations
                     if (checkIfUserExistsInDictionary(userWhoLikedThePost))
                     {
-                        updateRecordInDictionary(userWhoLikedThePost);
-                        //int likeCountForCurrentCalculatedUser = m_LikeDataAnalysis[userWhoLikedThePost];
-                        //likeCountForCurrentCalculatedUser++;
-                        //m_LikeDataAnalysis[userWhoLikedThePost] = likeCountForCurrentCalculatedUser;                    
+                        updateRecordInDictionary(userWhoLikedThePost);                                   
                     }
                     else
                     {
@@ -47,7 +46,7 @@ namespace FacebookApplication
                     }
                 }
 
-                m_progressBarForm.incrementProgressBar();
+                m_progressBarForm.IncrementProgressBar();
             }
         }
 
@@ -117,6 +116,5 @@ namespace FacebookApplication
 
             return amountOfLikes;
         }
-
     }
 }

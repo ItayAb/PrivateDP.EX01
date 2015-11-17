@@ -11,8 +11,7 @@ namespace FacebookApplication
 {
     public partial class AnalysisProgressBar : Form
     {
-        
-        int m_NumOfPosts;        
+        private int m_NumOfPosts;        
 
         public AnalysisProgressBar(int i_numOfPosts)
         {
@@ -35,7 +34,7 @@ namespace FacebookApplication
             progressBarForLikeAnalysis.Step = 1;
         }
 
-        public void incrementProgressBar()
+        public void IncrementProgressBar()
         {
             progressBarForLikeAnalysis.PerformStep();           
 
@@ -44,7 +43,5 @@ namespace FacebookApplication
                 this.Close();    
             }
         }
-
-        
     }
 }

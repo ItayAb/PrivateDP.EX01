@@ -1,6 +1,6 @@
 ﻿namespace FacebookApplication
 {
-    partial class LikeAnalyzerForm
+    public partial class LikeAnalyzerForm
     {
         /// <summary>
         /// Required designer variable.
@@ -17,6 +17,7 @@
             {
                 components.Dispose();
             }
+
             base.Dispose(disposing);
         }
 

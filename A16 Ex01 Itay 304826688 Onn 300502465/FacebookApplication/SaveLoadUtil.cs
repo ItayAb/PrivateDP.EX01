@@ -7,9 +7,8 @@ using System.Xml.Serialization;
 
 namespace FacebookApplication
 {
-    class SaveLoadUtil
+    public class SaveLoadUtil
     {
-
         public static bool SaveAppData(string i_pathToSave, ApplicationConfigurationData i_AppData)
         {
             bool resultOfSaveOperation = false;
@@ -55,8 +54,6 @@ namespace FacebookApplication
             }
 
             return resultOfLoad;
-
-
         }
     }
 }

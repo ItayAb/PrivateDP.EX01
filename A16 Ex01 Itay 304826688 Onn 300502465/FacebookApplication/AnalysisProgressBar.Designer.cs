@@ -1,6 +1,6 @@
 ﻿namespace FacebookApplication
 {
-    partial class AnalysisProgressBar
+    public partial class AnalysisProgressBar
     {
         /// <summary>
         /// Required designer variable.
@@ -17,6 +17,7 @@
             {
                 components.Dispose();
             }
+
             base.Dispose(disposing);
         }
 

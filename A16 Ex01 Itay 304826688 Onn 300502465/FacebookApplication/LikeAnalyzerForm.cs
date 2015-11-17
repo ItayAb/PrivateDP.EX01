@@ -13,8 +13,8 @@ namespace FacebookApplication
 {
     public partial class LikeAnalyzerForm : Form
     {
-        LikeAnalyzer m_LikeAnalyzer;
-        User m_LoggedUser;
+        private LikeAnalyzer m_LikeAnalyzer;
+        private User m_LoggedUser;
 
         public LikeAnalyzerForm(User i_LoggedUser)
         {
@@ -95,7 +95,6 @@ namespace FacebookApplication
             foreach (User likeUser in likers)
             {
                 listBoxDescendingLikeFriends.Items.Add(likeUser);
-
             }
         }
 
@@ -114,7 +113,6 @@ namespace FacebookApplication
                     listBoxRecentPost.Items.Add(selectedUser.Posts[i]);
                 }
             }
-
         }
 
         private void buttonLikeBack_Click(object sender, EventArgs e)
@@ -124,7 +122,7 @@ namespace FacebookApplication
 
         private void likeBackUserChosenPost()
         {
-            if (m_LoggedUser !=null)
+            if (m_LoggedUser != null)
             {
                 if (listBoxRecentPost.SelectedItems.Count < 1)
                 {
