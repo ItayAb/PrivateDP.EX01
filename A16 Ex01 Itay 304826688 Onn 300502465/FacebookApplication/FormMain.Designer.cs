@@ -38,8 +38,10 @@
             this.button4 = new System.Windows.Forms.Button();
             this.buttonLogin = new System.Windows.Forms.Button();
             this.listBoxPosts = new System.Windows.Forms.ListBox();
-            this.label_FullName = new System.Windows.Forms.Label();
+            this.labelFullName = new System.Windows.Forms.Label();
             this.checkBoxRemeberMe = new System.Windows.Forms.CheckBox();
+            this.listBoxCommentPerPost = new System.Windows.Forms.ListBox();
+            this.labelComments = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.pictureCoverPhoto)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureProfilePhoto)).BeginInit();
             this.SuspendLayout();
@@ -62,7 +64,7 @@
             this.pictureProfilePhoto.Location = new System.Drawing.Point(344, 98);
             this.pictureProfilePhoto.Margin = new System.Windows.Forms.Padding(4);
             this.pictureProfilePhoto.Name = "pictureProfilePhoto";
-            this.pictureProfilePhoto.Size = new System.Drawing.Size(166, 163);
+            this.pictureProfilePhoto.Size = new System.Drawing.Size(164, 163);
             this.pictureProfilePhoto.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.pictureProfilePhoto.TabIndex = 1;
             this.pictureProfilePhoto.TabStop = false;
@@ -91,7 +93,7 @@
             // 
             // textBoxStatusFromUser
             // 
-            this.textBoxStatusFromUser.Location = new System.Drawing.Point(211, 394);
+            this.textBoxStatusFromUser.Location = new System.Drawing.Point(147, 394);
             this.textBoxStatusFromUser.Margin = new System.Windows.Forms.Padding(4);
             this.textBoxStatusFromUser.Name = "textBoxStatusFromUser";
             this.textBoxStatusFromUser.Size = new System.Drawing.Size(435, 22);
@@ -99,17 +101,18 @@
             // 
             // buttonPostStatus
             // 
-            this.buttonPostStatus.Location = new System.Drawing.Point(48, 388);
+            this.buttonPostStatus.Location = new System.Drawing.Point(13, 388);
             this.buttonPostStatus.Margin = new System.Windows.Forms.Padding(4);
             this.buttonPostStatus.Name = "buttonPostStatus";
             this.buttonPostStatus.Size = new System.Drawing.Size(100, 28);
             this.buttonPostStatus.TabIndex = 6;
             this.buttonPostStatus.Text = "Post";
             this.buttonPostStatus.UseVisualStyleBackColor = true;
+            this.buttonPostStatus.Click += new System.EventHandler(this.buttonPostStatus_Click);
             // 
             // button4
             // 
-            this.button4.Location = new System.Drawing.Point(48, 562);
+            this.button4.Location = new System.Drawing.Point(13, 564);
             this.button4.Margin = new System.Windows.Forms.Padding(4);
             this.button4.Name = "button4";
             this.button4.Size = new System.Drawing.Size(100, 28);
@@ -133,20 +136,21 @@
             // 
             this.listBoxPosts.FormattingEnabled = true;
             this.listBoxPosts.ItemHeight = 16;
-            this.listBoxPosts.Location = new System.Drawing.Point(211, 445);
+            this.listBoxPosts.Location = new System.Drawing.Point(147, 445);
             this.listBoxPosts.Margin = new System.Windows.Forms.Padding(4);
             this.listBoxPosts.Name = "listBoxPosts";
             this.listBoxPosts.Size = new System.Drawing.Size(435, 324);
             this.listBoxPosts.TabIndex = 9;
+            this.listBoxPosts.SelectedIndexChanged += new System.EventHandler(this.listBoxPosts_SelectedIndexChanged);
             // 
-            // label_FullName
+            // labelFullName
             // 
-            this.label_FullName.AutoSize = true;
-            this.label_FullName.Location = new System.Drawing.Point(93, 244);
-            this.label_FullName.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
-            this.label_FullName.Name = "label_FullName";
-            this.label_FullName.Size = new System.Drawing.Size(0, 17);
-            this.label_FullName.TabIndex = 10;
+            this.labelFullName.AutoSize = true;
+            this.labelFullName.Location = new System.Drawing.Point(93, 244);
+            this.labelFullName.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.labelFullName.Name = "labelFullName";
+            this.labelFullName.Size = new System.Drawing.Size(0, 17);
+            this.labelFullName.TabIndex = 10;
             // 
             // checkBoxRemeberMe
             // 
@@ -159,13 +163,33 @@
             this.checkBoxRemeberMe.UseVisualStyleBackColor = true;
             this.checkBoxRemeberMe.CheckedChanged += new System.EventHandler(this.checkBoxRemeberMe_CheckedChanged);
             // 
+            // listBoxCommentPerPost
+            // 
+            this.listBoxCommentPerPost.FormattingEnabled = true;
+            this.listBoxCommentPerPost.ItemHeight = 16;
+            this.listBoxCommentPerPost.Location = new System.Drawing.Point(599, 445);
+            this.listBoxCommentPerPost.Name = "listBoxCommentPerPost";
+            this.listBoxCommentPerPost.Size = new System.Drawing.Size(253, 116);
+            this.listBoxCommentPerPost.TabIndex = 12;
+            // 
+            // labelComments
+            // 
+            this.labelComments.AutoSize = true;
+            this.labelComments.Location = new System.Drawing.Point(678, 414);
+            this.labelComments.Name = "labelComments";
+            this.labelComments.Size = new System.Drawing.Size(74, 17);
+            this.labelComments.TabIndex = 13;
+            this.labelComments.Text = "Comments";
+            // 
             // FormMain
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(866, 805);
+            this.ClientSize = new System.Drawing.Size(864, 805);
+            this.Controls.Add(this.labelComments);
+            this.Controls.Add(this.listBoxCommentPerPost);
             this.Controls.Add(this.checkBoxRemeberMe);
-            this.Controls.Add(this.label_FullName);
+            this.Controls.Add(this.labelFullName);
             this.Controls.Add(this.listBoxPosts);
             this.Controls.Add(this.buttonLogin);
             this.Controls.Add(this.button4);
@@ -176,6 +200,7 @@
             this.Controls.Add(this.pictureProfilePhoto);
             this.Controls.Add(this.pictureCoverPhoto);
             this.Margin = new System.Windows.Forms.Padding(4);
+            this.MaximizeBox = false;
             this.Name = "FormMain";
             this.Text = "Facebook Application";
             ((System.ComponentModel.ISupportInitialize)(this.pictureCoverPhoto)).EndInit();
@@ -196,7 +221,9 @@
         private System.Windows.Forms.Button button4;
         private System.Windows.Forms.Button buttonLogin;
         private System.Windows.Forms.ListBox listBoxPosts;
-        private System.Windows.Forms.Label label_FullName;
+        private System.Windows.Forms.Label labelFullName;
         private System.Windows.Forms.CheckBox checkBoxRemeberMe;
+        private System.Windows.Forms.ListBox listBoxCommentPerPost;
+        private System.Windows.Forms.Label labelComments;
     }
 }

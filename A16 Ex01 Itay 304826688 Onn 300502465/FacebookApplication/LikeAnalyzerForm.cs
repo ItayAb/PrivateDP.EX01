@@ -13,12 +13,15 @@ namespace FacebookApplication
 {
     public partial class LikeAnalyzerForm : Form
     {
+        private const string k_FormHeader = "Like Analyzer";
         private LikeAnalyzer m_LikeAnalyzer;
         private User m_LoggedUser;
 
         public LikeAnalyzerForm(User i_LoggedUser)
         {
             InitializeComponent();
+            this.Text = k_FormHeader;
+
             if (i_LoggedUser != null)
             {
                 m_LoggedUser = i_LoggedUser;
@@ -41,8 +44,15 @@ namespace FacebookApplication
 
         public void initUiLikeAnaylzer()
         {
-            pictureBoxCoverPhoto.LoadAsync(m_LoggedUser.Cover.SourceURL);            
-            labelNameOfUser.Text = m_LoggedUser.Name;
+            if (!string.IsNullOrEmpty(m_LoggedUser.Cover.SourceURL))
+            {
+                pictureBoxCoverPhoto.LoadAsync(m_LoggedUser.Cover.SourceURL);            
+            }
+            if (!string.IsNullOrEmpty(m_LoggedUser.Name))
+            {
+                this.Text = string.Format("{0} - {1}", k_FormHeader, m_LoggedUser.Name);
+            }
+
             textBoxAmountOfPosts.Text = m_LoggedUser.Posts.Count.ToString();
         }
 

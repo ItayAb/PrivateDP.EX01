@@ -40,7 +40,6 @@
             this.textBoxAmountOfPosts = new System.Windows.Forms.TextBox();
             this.label_ChooseAmountOfPosts = new System.Windows.Forms.Label();
             this.pictureBoxCoverPhoto = new System.Windows.Forms.PictureBox();
-            this.labelNameOfUser = new System.Windows.Forms.Label();
             this.labelOverallPostHeader = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.PictureBoxSelectedFriend)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBoxCoverPhoto)).BeginInit();
@@ -89,12 +88,14 @@
             // 
             // buttonRunAnalysis
             // 
-            this.buttonRunAnalysis.Location = new System.Drawing.Point(18, 394);
+            this.buttonRunAnalysis.BackColor = System.Drawing.Color.Lime;
+            this.buttonRunAnalysis.Font = new System.Drawing.Font("Aharoni", 10.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.buttonRunAnalysis.Location = new System.Drawing.Point(18, 384);
             this.buttonRunAnalysis.Name = "buttonRunAnalysis";
-            this.buttonRunAnalysis.Size = new System.Drawing.Size(154, 23);
+            this.buttonRunAnalysis.Size = new System.Drawing.Size(159, 42);
             this.buttonRunAnalysis.TabIndex = 4;
-            this.buttonRunAnalysis.Text = "RunAnalysis";
-            this.buttonRunAnalysis.UseVisualStyleBackColor = true;
+            this.buttonRunAnalysis.Text = "Run Analysis";
+            this.buttonRunAnalysis.UseVisualStyleBackColor = false;
             this.buttonRunAnalysis.Click += new System.EventHandler(this.button_RunAnalysis_Click);
             // 
             // textBoxAmountPostsToParse
@@ -122,7 +123,8 @@
             // 
             // textBoxAmountOfPosts
             // 
-            this.textBoxAmountOfPosts.Location = new System.Drawing.Point(290, 260);
+            this.textBoxAmountOfPosts.ForeColor = System.Drawing.SystemColors.Control;
+            this.textBoxAmountOfPosts.Location = new System.Drawing.Point(195, 276);
             this.textBoxAmountOfPosts.Name = "textBoxAmountOfPosts";
             this.textBoxAmountOfPosts.ReadOnly = true;
             this.textBoxAmountOfPosts.Size = new System.Drawing.Size(100, 22);
@@ -147,20 +149,10 @@
             this.pictureBoxCoverPhoto.TabIndex = 11;
             this.pictureBoxCoverPhoto.TabStop = false;
             // 
-            // labelNameOfUser
-            // 
-            this.labelNameOfUser.AutoSize = true;
-            this.labelNameOfUser.BackColor = System.Drawing.Color.Transparent;
-            this.labelNameOfUser.Location = new System.Drawing.Point(136, 41);
-            this.labelNameOfUser.Name = "labelNameOfUser";
-            this.labelNameOfUser.Size = new System.Drawing.Size(52, 17);
-            this.labelNameOfUser.TabIndex = 12;
-            this.labelNameOfUser.Text = "Bla Bla";
-            // 
             // labelOverallPostHeader
             // 
             this.labelOverallPostHeader.AutoSize = true;
-            this.labelOverallPostHeader.Location = new System.Drawing.Point(124, 265);
+            this.labelOverallPostHeader.Location = new System.Drawing.Point(29, 279);
             this.labelOverallPostHeader.Name = "labelOverallPostHeader";
             this.labelOverallPostHeader.Size = new System.Drawing.Size(160, 17);
             this.labelOverallPostHeader.TabIndex = 8;
@@ -171,7 +163,6 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(657, 716);
-            this.Controls.Add(this.labelNameOfUser);
             this.Controls.Add(this.pictureBoxCoverPhoto);
             this.Controls.Add(this.label_ChooseAmountOfPosts);
             this.Controls.Add(this.textBoxAmountOfPosts);
@@ -185,6 +176,7 @@
             this.Controls.Add(this.PictureBoxSelectedFriend);
             this.Controls.Add(this.listBoxDescendingLikeFriends);
             this.Margin = new System.Windows.Forms.Padding(4);
+            this.MaximizeBox = false;
             this.Name = "LikeAnalyzerForm";
             this.Text = "Like Analyzer ";
             ((System.ComponentModel.ISupportInitialize)(this.PictureBoxSelectedFriend)).EndInit();
@@ -207,7 +199,6 @@
         private System.Windows.Forms.TextBox textBoxAmountOfPosts;
         private System.Windows.Forms.Label label_ChooseAmountOfPosts;
         private System.Windows.Forms.PictureBox pictureBoxCoverPhoto;
-        private System.Windows.Forms.Label labelNameOfUser;
         private System.Windows.Forms.Label labelOverallPostHeader;
     }
 }

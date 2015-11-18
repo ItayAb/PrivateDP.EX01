@@ -23,6 +23,7 @@ namespace FacebookApplication
 
         private ApplicationConfigurationData m_AppConfig;
 
+        // add icons to all Forms
         public FormMain()
         {
             m_AppConfig = new ApplicationConfigurationData();
@@ -63,7 +64,7 @@ namespace FacebookApplication
             else
             {
                 LoginResult result = FacebookService.Login(
-                    k_AppId,                    
+                    k_AppId,
                     /// (desig patter's "Design Patterns Course App 2.4" app)
                     "public_profile",
                     "user_education_history",
@@ -78,7 +79,7 @@ namespace FacebookApplication
                     "publish_actions",
                     "user_events",
                     "user_games_activity",
-                    "user_groups",                    
+                    "user_groups",
                     // (This permission is only available for apps using Graph API version v2.3 or older.)
                     "user_hometown",
                     "user_likes",
@@ -115,7 +116,7 @@ namespace FacebookApplication
                     MessageBox.Show(result.ErrorMessage);
                 }
             }
-        } 
+        }
 
         private void buttonLogin_Click(object sender, EventArgs e)
         {
@@ -135,29 +136,40 @@ namespace FacebookApplication
                 pictureCoverPhoto.LoadAsync(m_LoggedInUser.Cover.SourceURL);
             }
 
-            // writing the posts to the 'news feed' (needs work)
+            if (!string.IsNullOrEmpty(m_LoggedInUser.Name))
+            {
+                this.Text = m_LoggedInUser.Name;
+            }
+
+            writePostsToNewsFeed();
+
+            checkBoxRemeberMe.Checked = m_AppConfig.RememberMe;
+        }
+
+        private void writePostsToNewsFeed()
+        {
+            listBoxPosts.DisplayMember = "Message";
+            // TODO: writing the posts to the 'news feed' (needs work)
             for (int i = 0; i < m_LoggedInUser.Posts.Count; i++)
             {
                 if (m_LoggedInUser.Posts[i].Message != null)
                 {
                     if (m_LoggedInUser.Posts[i].Caption != null)
                     {
-                        listBoxPosts.Items.Add(string.Format("{0}     {1}", m_LoggedInUser.Posts[i].Message, m_LoggedInUser.Posts[i].Caption));
+                        listBoxPosts.Items.Add(m_LoggedInUser.Posts[i]);
                     }
                     else
                     {
-                        listBoxPosts.Items.Add(m_LoggedInUser.Posts[i].Message);
+                        listBoxPosts.Items.Add(m_LoggedInUser.Posts[i]);
                     }
                 }
             }
-
-            checkBoxRemeberMe.Checked = m_AppConfig.RememberMe;
         }
 
         private void buttonLikeAnalyzer_Click(object sender, EventArgs e)
         {
             m_likeAnalyzerForm = new LikeAnalyzerForm(m_LoggedInUser);
-            m_likeAnalyzerForm.ShowDialog();
+            m_likeAnalyzerForm.ShowDialog();            
         }
 
         protected override void OnClosing(CancelEventArgs e)
@@ -177,5 +189,64 @@ namespace FacebookApplication
                 m_AppConfig.RememberMe = false;
             }
         }
-    }
+
+        private void buttonPostStatus_Click(object sender, EventArgs e)
+        {
+            postStatus();
+        }
+
+        private void postStatus()
+        {
+            // if user hasnt logged in yet
+            if (m_LoggedInUser == null)
+            {
+                MessageBox.Show("Please login first");
+            }
+            else
+            {
+                m_LoggedInUser.ReFetch();
+                if (string.IsNullOrWhiteSpace(textBoxStatusFromUser.Text))
+                {
+                    MessageBox.Show("Nothing to post, please enter your status and then click 'Post'");
+                }
+                else
+                {
+                    m_LoggedInUser.PostStatus(textBoxStatusFromUser.Text);
+                    textBoxStatusFromUser.Text = "";
+                    MessageBox.Show("Your status was posted!");
+                }
+            }
+        }
+
+        private void listBoxPosts_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            Post selectedPost = listBoxPosts.SelectedItem as Post;
+            if (selectedPost != null)
+            {
+                fillCommentsBox(selectedPost);
+            }
+        }
+
+        private void fillCommentsBox(Post i_postToFetchComments)
+        {
+            // TODO: make it work
+            listBoxCommentPerPost.DisplayMember = "Message";
+            listBoxCommentPerPost.ValueMember = "From"; // trying
+            listBoxCommentPerPost.Items.Clear();
+
+            if (i_postToFetchComments.Comments.Count > 0)
+            {
+                foreach (Comment selectedPostComment in i_postToFetchComments.Comments)
+                {                    
+                    listBoxCommentPerPost.Items.Add(selectedPostComment);
+                    //listBoxCommentPerPost.Items.Add(string.Format("{0} : {1}\n{2}", selectedPostComment.From, selectedPostComment.Message, selectedPostComment.CreatedTime));
+                }    
+            }
+            else
+            {
+                listBoxCommentPerPost.Items.Add("No posts to show");
+            }
+        }
+    }   
+
 }
